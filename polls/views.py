@@ -5,3 +5,6 @@ from django.shortcuts import render
 
 def index(request):
     return HttpResponse("Hello, world. You're at the polls index.")
+
+def home_page(request):
+    return HttpResponse("<html><title>Polls</title></html>")
