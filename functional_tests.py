@@ -2,7 +2,7 @@ import time
 import unittest
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-
+import json
 
 class NewVisitorTest(unittest.TestCase):
     def setUp(self):
@@ -50,6 +50,37 @@ class NewVisitorTest(unittest.TestCase):
         voted_items_texts = [item.text for item in voted_items.find_elements(By.TAG_NAME, "li")]
 
         self.assertIn(question_text, voted_items_texts)
+
+
+class UsersAPITest(unittest.TestCase):
+    fixtures = ['sample.json']  # Load sample data before running tests
+
+    @classmethod
+    def setUp(self):
+        self.browser = webdriver.Firefox()
+          # Change this to the appropriate WebDriver for your browser
+
+    @classmethod
+    def tearDownClass(self):
+        self.browser.quit()
+
+    def test_user_list_count(self):
+        self.browser.get("http://localhost:8000/polls/users")
+        user_list = self.browser.find_element(By.ID, "user-list")
+        user_items = user_list.find_elements(By.TAG_NAME, "li")
+        self.assertEqual(len(user_items), 5)
+
+    def test_user_details_id(self):
+        id = 2
+        response = self.browser.get(f'http://localhost:8000/polls/users/{id}/')
+        self.assertIn("User Details", self.browser.title)
+        header_text = self.browser.find_element(By.TAG_NAME, "h1").text
+        self.assertIn("User Details", header_text)
+
+
+
+
+
 
 
 if __name__ == "__main__":

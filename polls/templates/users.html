@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User List</title>
+</head>
+<body>
+    <h1>User List</h1>
+    <ul id="user-list">
+        <!-- User items will be populated here -->
+    </ul>
+
+    <script>
+        const users = {
+            "users": [
+                {
+                    "id": 1,
+                    "username": "john_doe",
+                    "email": "john@example.com",
+                    "full_name": "John Doe",
+                    "age": 30,
+                    "city": "New York"
+                },
+                {
+                    "id": 2,
+                    "username": "jane_smith",
+                    "email": "jane@example.com",
+                    "full_name": "Jane Smith",
+                    "age": 25,
+                    "city": "Los Angeles"
+                },
+                {
+                    "id": 3,
+                    "username": "mike_jones",
+                    "email": "mike@example.com",
+                    "full_name": "Mike Jones",
+                    "age": 40,
+                    "city": "Chicago"
+                },
+                {
+                    "id": 4,
+                    "username": "emily_wilson",
+                    "email": "emily@example.com",
+                    "full_name": "Emily Wilson",
+                    "age": 35,
+                    "city": "Houston"
+                },
+                {
+                    "id": 5,
+                    "username": "david_brown",
+                    "email": "david@example.com",
+                    "full_name": "David Brown",
+                    "age": 28,
+                    "city": "San Francisco"
+                }
+            ]
+        };
+
+        const userList = document.getElementById('user-list');
+        users.users.forEach(user => {
+            const li = document.createElement('li');
+            li.textContent = `Username: ${user.username}, Email: ${user.email}, Full Name: ${user.full_name}, Age: ${user.age}, City: ${user.city}`;
+            userList.appendChild(li);
+        });
+    </script>
+</body>
+</html>
