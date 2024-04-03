@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Question Voting App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .question {
+            margin-bottom: 10px;
+        }
+        .question-text {
+            font-weight: bold;
+        }
+        .vote-button {
+            margin-left: 10px;
+        }
+        #voted-items {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Questions</h1>
+
+    <div class="question">
+        <span class="question-text">What is your favorite color?</span>
+        <input type="radio" name="vote" value="favorite_color"> Blue
+        <input type="radio" name="vote" value="favorite_color"> Red
+        <input type="radio" name="vote" value="favorite_color"> Green
+        <button class="vote-button">Vote</button>
+    </div>
+
+    <div class="question">
+        <span class="question-text">Which programming language do you prefer?</span>
+        <input type="radio" name="vote" value="programming_language"> Python
+        <input type="radio" name="vote" value="programming_language"> JavaScript
+        <input type="radio" name="vote" value="programming_language"> Java
+        <button class="vote-button">Vote</button>
+    </div>
+
+    <div id="voted-items">
+        <h2>Your Voted Items</h2>
+        <ul id="voted-list">
+            <!-- Voted items will be displayed here -->
+        </ul>
+    </div>
+
+    <script>
+        document.querySelectorAll('.vote-button').forEach(button => {
+            button.addEventListener('click', function() {
+                const questionText = this.parentNode.querySelector('.question-text').textContent;
+                const votedList = document.getElementById('voted-list');
+                const listItem = document.createElement('li');
+                listItem.textContent = questionText;
+                votedList.appendChild(listItem);
+            });
+        });
+    </script>
+</body>
+</html>
