@@ -16,10 +16,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
-from polls.views import home_page
+from polls.views import home_page, todo_page, view_list, new_list, add_item
 
 urlpatterns = [
     path("", home_page, name="home"),
+    path("polls/todo/lists/new", new_list, name="new_list"),
+    path("polls/todo/lists/<int:list_id>/", view_list, name="view_list"),
+    path("polls/todo/lists/<int:list_id>/add_item", add_item, name="add_item"),
+
     path('polls/', include('polls.urls')),
     path('admin/', admin.site.urls),
 ]
